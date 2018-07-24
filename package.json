@@ -1,0 +1,38 @@
+{
+  "name": "esr",
+  "version": "1.0.0",
+  "description": "react ssr 7 doc",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-thunk": "^1.0.0",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.16.0",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoxiangdaiyu/esr.git"
+  },
+  "keywords": [
+    "react",
+    "server",
+    "side",
+    "render"
+  ],
+  "author": "xiaoxiangdaiyu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaoxiangdaiyu/esr/issues"
+  },
+  "homepage": "https://github.com/xiaoxiangdaiyu/esr#readme"
+}

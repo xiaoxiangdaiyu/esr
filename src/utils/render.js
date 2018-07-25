@@ -1,5 +1,9 @@
-import Provider from 'react-redux';
+import React from 'react'
+import Root from '../pages/Root';
 
-const renders = (store)=>{
-    return 
+export default function render(Root,Module,reducers){
+    React.render(
+        <Root Module={Module} reducers={reducers}></Root>,
+        document.getElementById('root')
+    )
 }

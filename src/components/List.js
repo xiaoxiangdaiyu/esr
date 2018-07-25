@@ -5,10 +5,12 @@ export default class extends Component {
         super(props)
     }
     render(){
-        let {} = this.props
+        let {list} = this.props
         return (
             <div>
-                测试页面啦
+                {list.map((item,i)=>{
+                    return <li key = {i}>item</li>
+                })}
             </div>
         )
     }

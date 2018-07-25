@@ -1,18 +1,13 @@
+import { ADD_LIST } from '../utils/const';
 const defaultstate = {
-    conditionList: [
-        {
-            rules: []
-        }
-    ]
+    list:[]
 };
 
 
-export function condition(state = defaultstate, action) {
-    //debugger;
-    //console.dir('reducer');
+export function demo(state = defaultstate, action) {
     switch (action.type) {
-        case 'ACTIVITY_CONDITION':
-            return Object.assign({}, state, action.data);
+        case 'ADD_LIST':
+            return state.list.concat(action.data || [])
         default:
             return state;
     }

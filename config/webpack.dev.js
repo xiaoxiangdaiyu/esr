@@ -1,7 +1,7 @@
 var path = require('path');
 var glob = require('glob');
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var CleanWebpackPlugin = require('clean-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var basePath = path.join(process.cwd(), '/src/pages')
 var files = glob.sync(path.join(basePath + '*.js'))
@@ -32,11 +32,11 @@ module.export = {
      * 假如用到了jq
     */
     externals: {
-        // 此用法表明，
-        // jquery: 'jQuery'
-        jquery: {
+        // 此用法表明，将会搜索全局jQuery变量来替代 import $ from 'jquery' 中的jquery
+        jquery: 'jQuery'
+        // jquery: {
 
-        }
+        // }
     },
     module: {
         rules: [
@@ -70,7 +70,15 @@ module.export = {
         proxy: { // proxy URLs to backend development server
             '/api': 'http://localhost:3000'
         },
-        hot: true
-    }
-
+        contentBase:'./dist',
+        hot: true,
+        open:true
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            title:'test'
+        }),
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }

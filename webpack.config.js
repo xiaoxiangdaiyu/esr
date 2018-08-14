@@ -1,21 +1,23 @@
 var fs = require('fs');
 var path = require('path');
-var glob = require('glob');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+// var glob = require('glob');
+// var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var CleanWebpackPlugin = require('clean-webpack-plugin');
 
-var basePath = path.join(process.cwd(), '/src/pages')
-var files = glob.sync(path.join(basePath + '*.js'))
-// 入口地址
-var Entrys = {}
-files.forEach(function (file) {
-    var releativePath = path.releative(basePath, file)
-    getEntrys[releativePath.replace(/\.js/, '')] = releativePath
-})
+var basePath = path.join(process.cwd(), '/src/pages/Index.js')
+// var files = glob.sync(path.join(basePath + '*.js'))
+// // 入口地址
+// var Entrys = {}
+// files.forEach(function (file) {
+//     var releativePath = path.releative(basePath, file)
+//     getEntrys[releativePath.replace(/\.js/, '')] = releativePath
+// })
 // console.log(files)
 module.export = {
-    entry: Entrys,
-    // target: 'node',
+    entry: {
+        'index': basePath
+    },
+    target: 'node',
     output: {
         path: process.cwd() + '/dist',
         // 直接的入口模块名
@@ -51,7 +53,10 @@ module.export = {
                 include: [
                     path.resolve(__dirname, "../src")
                 ],
-                exclude: /node_modules/,
+                exclude: [
+                    'node_modules',
+                    path.resolve(__dirname, "../node_modules")
+                ],
                 use: [
                     {
                         loader: 'babel-loader',

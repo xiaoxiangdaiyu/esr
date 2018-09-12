@@ -1,18 +1,23 @@
 var path = require('path');
 var glob = require('glob');
+var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 var basePath = path.join(process.cwd(), '/src/pages')
-var files = glob.sync(path.join(basePath + '*.js'))
+var files = glob.sync(path.join(basePath,'*.js'))
 // 入口地址
 var Entrys = {}
 files.forEach(function (file) {
-    var releativePath = path.releative(basePath, file)
-    getEntrys[releativePath.replace(/\.js/, '')] = releativePath
+    var releativePath = path.relative(basePath, file)
+    console.log(file)
+    console.log(__dirname)
+    Entrys[releativePath.replace(/\.js/, '')] = file
 })
+console.log(Entrys)
 module.export = {
     entry: Entrys,
+    mode: 'development',
     output: {
         path: process.cwd() + '/dist',
         // 直接的入口模块名

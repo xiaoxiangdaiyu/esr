@@ -3,7 +3,6 @@ var path = require('path');
 // var glob = require('glob');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var CleanWebpackPlugin = require('clean-webpack-plugin');
-
 var basePath = path.join(process.cwd(), '/src/pages/Index.js')
 // var files = glob.sync(path.join(basePath + '*.js'))
 // // 入口地址

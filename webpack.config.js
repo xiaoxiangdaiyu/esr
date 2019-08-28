@@ -14,7 +14,7 @@ files.forEach(function (file) {
 })
 console.log(path.resolve(__dirname, './src'))
 console.log(path.resolve(__dirname, './src/test.js'))
-module.export = {
+module.exports = {
     mode:'production',
     entry:{
         app:'./src/test.js',

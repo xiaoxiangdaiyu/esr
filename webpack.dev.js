@@ -15,7 +15,7 @@ files.forEach(function (file) {
     Entrys[releativePath.replace(/\.js/, '')] = file
 })
 console.log(Entrys)
-module.export = {
+module.exports = {
     entry: {
         test: './src/test.js',
     },
@@ -56,7 +56,23 @@ module.export = {
                 ],
                 use: [
                     {
-                        loader: 'babel-loader'
+                        loader: 'babel-loader',
+                        options: {
+                            "presets": [
+                                "env",
+                                "react",
+                                "stage-0"
+                            ],
+                            "plugins": [
+                                "transform-object-rest-spread",
+                                "transform-decorators-legacy",
+                                "syntax-dynamic-import",
+                                "transform-async-to-generator",
+                                "transform-class-properties",
+                                "transform-runtime",
+                                "add-module-exports"
+                            ]
+                        } 
                     }
                 ]
             }

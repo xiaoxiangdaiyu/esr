@@ -13,8 +13,9 @@ files.forEach(function (file) {
     Entrys[releativePath.replace(/\.js/, '')] = file
 })
 console.log(path.resolve(__dirname, './src')+'in dev')
-console.log(path.resolve(__dirname, './src/test.js'))
+console.log(Entrys)
 module.exports = {
+    entry: Entrys,
     output: {
         path: process.cwd() + '/dist1',
         // 直接的入口模zzz块名

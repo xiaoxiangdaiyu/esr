@@ -48,31 +48,11 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)?$/,
-                include: [
-                    path.resolve(__dirname, "../src")
-                ],
-                exclude: [
-                    'node_modules'
-                ],
+                include: path.resolve(__dirname, "../src"),
+                exclude: path.resolve(__dirname, 'node_modules'),
                 use: [
                     {
-                        loader: 'babel-loader',
-                        options: {
-                            "presets": [
-                                "env",
-                                "react",
-                                "stage-0"
-                            ],
-                            "plugins": [
-                                "transform-object-rest-spread",
-                                "transform-decorators-legacy",
-                                "syntax-dynamic-import",
-                                "transform-async-to-generator",
-                                "transform-class-properties",
-                                "transform-runtime",
-                                "add-module-exports"
-                            ]
-                        } 
+                        loader: 'babel-loader'
                     }
                 ]
             }
@@ -82,10 +62,17 @@ module.exports = {
         extensions: [".js", ".json", ".jsx", ".css"],
     },
     devServer: {
-        contentBase:path.join(__dirname,'dist'),
+        // 指明静态文件例如html应该从何处获取，包括js和css等bundle
+        contentBase: path.resolve(__dirname, 'dist'),
         hot: true,
         open:true,
-        publicPath:'/dist/'
+        // 不过，如果设置了该属性，则js等静态资源路径需要加上该前缀
+        // 假设服务器运行在 http://localhost:8080 并且 output.filename 被设置为 bundle.js。
+        // 默认 devServer.publicPath 是 '/'，
+        // 所以你的包(bundle)可以通过 http://localhost:8080/bundle.js 访问。
+        // 修改 devServer.publicPath，将 bundle 放在指定目录下：
+        // 上面的例子很清晰，概括就是静态资源bundle输出位置，指定了则在该文件夹下，访问时需要加上该path
+        publicPath:'/static'
     },
     plugins: [
         new CleanWebpackPlugin(),

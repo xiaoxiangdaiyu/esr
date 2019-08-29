@@ -48,7 +48,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)?$/,
-                include: path.resolve(__dirname, "../src"),
+                include: path.resolve(__dirname, "src"),
                 exclude: path.resolve(__dirname, 'node_modules'),
                 use: [
                     {
@@ -78,7 +78,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title:'test',
-            template:'./index.html'
+            template:'./src/index.html'
         }),
         new webpack.HotModuleReplacementPlugin()
     ]

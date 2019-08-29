@@ -28,9 +28,9 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "build2": "webpack --config webpack.dev.js"
+    "dev": "webpack-dev-server --config ./config/webpack.dev.js",
+    "build": "webpack --config ./config/webpack.prod.js",
+    "build2": "webpack --config ./config/webpack.dev.js"
   },
   "repository": {
     "type": "git",

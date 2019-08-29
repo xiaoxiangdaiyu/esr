@@ -7,18 +7,22 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var basePath = path.join(process.cwd(), '/src/pages')
 var files = glob.sync(path.join(basePath,'*.js'))
 // 入口地址
-var Entrys = {}
+var Entrys = {},
+    htmls = []
 files.forEach(function (file) {
     var releativePath = path.relative(basePath, file)
     console.log('file>>>',file)
     console.log('__dirname',__dirname)
-    Entrys[releativePath.replace(/\.js/, '')] = file
+    var name = releativePath.replace(/\.js/, '').toLowerCase()
+    Entrys[name] = file
+    htmls.push(new HtmlWebpackPlugin({
+        filename: name+ '.html',
+        template:'./src/index.html',
+        chunks: ['common', name]
+    }))
 })
-console.log(Entrys)
 module.exports = {
-    entry: {
-        test: './src/test.js',
-    },
+    entry: Entrys,
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -63,7 +67,7 @@ module.exports = {
     },
     devServer: {
         // 指明静态文件例如html应该从何处获取，包括js和css等bundle
-        contentBase: path.resolve(__dirname, 'dist'),
+        contentBase: path.resolve(__dirname, 'src/'),
         hot: true,
         open:true,
         // 不过，如果设置了该属性，则js等静态资源路径需要加上该前缀
@@ -72,14 +76,11 @@ module.exports = {
         // 所以你的包(bundle)可以通过 http://localhost:8080/bundle.js 访问。
         // 修改 devServer.publicPath，将 bundle 放在指定目录下：
         // 上面的例子很清晰，概括就是静态资源bundle输出位置，指定了则在该文件夹下，访问时需要加上该path
-        publicPath:'/static'
+        publicPath:'/'
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title:'test',
-            template:'./src/index.html'
-        }),
+        ...htmls,
         new webpack.HotModuleReplacementPlugin()
     ]
 }

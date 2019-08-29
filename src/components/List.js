@@ -1,11 +1,11 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
 
 export default class extends Component {
     constructor(props,context){
         super(props)
     }
     render(){
-        let {list} = this.props
+        let list = [1,2,3,4]
         return (
             <div>
                 {list.map((item,i)=>{

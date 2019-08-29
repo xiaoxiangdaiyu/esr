@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/IndexAction'
-import List from '../components/index'
+import List from '../components/List'
 class Index extends Component{
     constructor(props){
         super(props)

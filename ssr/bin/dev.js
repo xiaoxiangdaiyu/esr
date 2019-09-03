@@ -19,6 +19,9 @@ const clearCache = function(){
         if (/[\/\\](server|src)[\/\\]/.test(id)) delete require.cache[id];
     });
 }
+app.use(views(path.resolve(__dirname, '../server/static'), {
+    map: { html: 'ejs' }
+}))
 async function start (){
     const middleware = await koaWebpack({
         // compiler,
@@ -29,13 +32,20 @@ async function start (){
     })
 
     app.use(middleware)
-    app.use(views(path.resolve(__dirname, '../server/static'), {
-        map: { html: 'ejs' }
-    }))
     routerManagement(router, app)
     // 路由启动之后，构建产物应该指向路由对应静态文件地址
     app.use(router.routes());   /*启动路由*/
     app.use(router.allowedMethods());
+    app.use(async (ctx) => {
+        if(ctx.path.includes('.html')){
+            console.log('in')
+            const filename = path.resolve(devConfig.output.path, 'index.html')
+            ctx.response.type = 'html'
+            console.log(filename)
+            ctx.response.body = middleware.devMiddleware.fileSystem.createReadStream(filename)
+        }
+        
+    });
     app.listen(3000, () => {
         console.log("服务器已启动，请访问http://127.0.0.1:3000")
     });

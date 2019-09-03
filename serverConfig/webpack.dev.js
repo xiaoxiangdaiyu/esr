@@ -16,7 +16,7 @@ files.forEach(function (file) {
     Entrys[name] = [file]
     htmls.push(new HtmlWebpackPlugin({
         filename: name+ '.html',
-        template:'./serverConfig/index.html',
+        template:'serverConfig/index.html',
         chunks: [name]
     }))
 })
@@ -31,7 +31,7 @@ module.exports = {
         // 这不就是按需加载的么
         chunkFilename: '[name].[chunkhash].js',
         crossOriginLoading: 'anonymous',
-        publicPath: '/build/'
+        // publicPath: '/build/'
     },
     devtool: 'inline-source-map',
     /**
@@ -59,6 +59,12 @@ module.exports = {
                         loader: 'babel-loader'
                     }
                 ]
+            },{
+                test:/\.html$/,
+                include: path.join(process.cwd(), "/ssr"),
+                use:[{
+                    loader:'html-loader'
+                }]
             }
         ]
     },

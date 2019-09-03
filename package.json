@@ -49,7 +49,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "build2": "webpack --config ./config/webpack.dev.js",
+    "build2": "webpack --config ./serverConfig/webpack.dev.js",
     "serve-dev": "nodemon ./ssr/bin/dev.js"
   },
   "repository": {

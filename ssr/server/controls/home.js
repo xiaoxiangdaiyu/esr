@@ -8,8 +8,6 @@ exports.favicon = (ctx) => {
     ctx.body = 'xxx';
 }
 
-exports.test = (ctx) => {
-    ctx.body = {
-        data: `测试数据`
-    }
+exports.test =async (ctx) => {
+    await ctx.render('index',{})
 }

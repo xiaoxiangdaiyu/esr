@@ -6,6 +6,7 @@
   "dependencies": {
     "clean-webpack-plugin": "^0.1.19",
     "fs": "0.0.1-security",
+    "koa-views": "^6.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -42,7 +43,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "build2": "webpack --config ./config/webpack.dev.js"
+    "build2": "webpack --config ./config/webpack.dev.js",
+    "serve-dev":"nodemon ./ssr/bin/dev.js"
   },
   "repository": {
     "type": "git",

@@ -5,9 +5,14 @@ const { devMiddleware, hotMiddleware } = KWM
 const devConfig = require('../../serverConfig/webpack.dev') 
 const compile = webpack(devConfig)
 const KoaRouter = require('koa-router');
+const path = require('path');
+const views = require('koa-views');
 const router = new KoaRouter();
 const routerManagement = require('../server/route.js');
 const app = new koa()
+app.use(views(path.resolve(__dirname, '../server/static'), {
+    extension: 'html'
+}))
 app.use(devMiddleware(compile, {
     // display no info to console (only warnings and errors)
     noInfo: false,

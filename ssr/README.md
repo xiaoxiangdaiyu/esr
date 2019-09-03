@@ -104,3 +104,7 @@ npm run dev
 // koa 执行
 npm run serve-dev
 ```
+
+
+## 问题记录
+koa-views 使用ejs渲染模板时，发现devmodule 生成于内存中的文件不能被访问到，头疼。

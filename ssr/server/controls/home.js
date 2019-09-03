@@ -9,5 +9,13 @@ exports.favicon = (ctx) => {
 }
 
 exports.test =async (ctx) => {
-    await ctx.render('index',{})
+    const id = ctx.params.id
+    await ctx.render('index',{
+        context:'测试内容',
+        jsPath:'/build/index.js'
+    })
+}
+
+exports.static = async (ctx)=>{
+
 }

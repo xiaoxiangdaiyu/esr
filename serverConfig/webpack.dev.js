@@ -24,13 +24,14 @@ module.exports = {
     entry: Entrys,
     mode: 'development',
     output: {
-        path: path.join(process.cwd(), '/dist'),
+        path: path.join(process.cwd(), '/ssr/server/static/dist'),
         // 直接的入口模块名
         filename: '[name].js',
         // 非入口模块，也就是不需要打包到一起的，但又可能会用到，
         // 这不就是按需加载的么
         chunkFilename: '[name].[chunkhash].js',
-        crossOriginLoading: 'anonymous'
+        crossOriginLoading: 'anonymous',
+        publicPath: '/build/'
     },
     devtool: 'inline-source-map',
     /**
@@ -68,5 +69,8 @@ module.exports = {
         new CleanWebpackPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify(env)
+        // })
     ]
 }

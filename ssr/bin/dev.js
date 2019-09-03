@@ -11,43 +11,29 @@ const router = new KoaRouter();
 const routerManagement = require('../server/route.js');
 const app = new koa()
 app.use(views(path.resolve(__dirname, '../server/static'), {
-    extension: 'html'
+    map: { html: 'ejs' }
 }))
 app.use(devMiddleware(compile, {
-    // display no info to console (only warnings and errors)
-    noInfo: false,
-
-    // display nothing to the console
-    quiet: false,
-
-    // switch into lazy mode
-    // that means no watching, but recompilation on every request
-    lazy: true,
-
-    // watch options (only lazy: false)
-    watchOptions: {
-        aggregateTimeout: 300,
-        poll: true
-    },
-
     // public path to bind the middleware to
     // use the same as in webpack
-    publicPath: "/assets/",
-
-    // custom headers
-    headers: { "X-Custom-Header": "yes" },
-
-    // options for formating the statistics
+    noInfo: true,
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: false
+    },
+    publicPath: '/build/',
     stats: {
         colors: true
-    }
+    },
+    headers: { "X-Custom-Header": "yes" },
 }))
 app.use(hotMiddleware(compile, {
-    // log: console.log,
-    // path: '/__webpack_hmr',
-    // heartbeat: 10 * 1000
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
 }))
-routerManagement(router)
+routerManagement(router,app)
+// 路由启动之后，构建产物应该指向路由对应静态文件地址
 app.use(router.routes());   /*启动路由*/
 app.use(router.allowedMethods());
 app.listen(3000, () => {

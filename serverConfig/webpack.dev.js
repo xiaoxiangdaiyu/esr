@@ -13,18 +13,18 @@ files.forEach(function (file) {
     console.log('file>>>',file)
     console.log('__dirname',__dirname)
     var name = releativePath.replace(/\.js/, '').toLowerCase()
-    Entrys[name] = file
+    Entrys[name] = [file]
     htmls.push(new HtmlWebpackPlugin({
         filename: name+ '.html',
-        template:'./src/index.html',
-        chunks: ['common', name]
+        template:'./serverConfig/index.html',
+        chunks: [name]
     }))
 })
 module.exports = {
     entry: Entrys,
     mode: 'development',
     output: {
-        path: path.join(process.cwd(), '/ssr/server/static/dist'),
+        path: path.join(process.cwd(), '/ssr/server/static/'),
         // 直接的入口模块名
         filename: '[name].js',
         // 非入口模块，也就是不需要打包到一起的，但又可能会用到，
@@ -67,8 +67,9 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        ...htmls,
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        // new webpack.HotModuleReplacementPlugin()
         // new webpack.DefinePlugin({
         //     'process.env.NODE_ENV': JSON.stringify(env)
         // })

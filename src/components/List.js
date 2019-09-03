@@ -5,11 +5,11 @@ export default class extends Component {
         super(props)
     }
     render(){
-        let list = [1,2,3,4]
+        let list = [2222,12,223,222]
         return (
             <div>
                 {list.map((item,i)=>{
-                    return <li key = {i}>item</li>
+                    return <li key = {i}>测试项目{item}</li>
                 })}
             </div>
         )

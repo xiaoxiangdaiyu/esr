@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "clean-webpack-plugin": "^0.1.19",
+    "file-loader": "^4.2.0",
     "fs": "0.0.1-security",
+    "html-loader": "^0.5.5",
     "koa-views": "^6.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -13,7 +15,9 @@
     "react-router-dom": "^5.0.1",
     "react-thunk": "^1.0.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "webpack-dev-middleware": "^3.7.1",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -34,10 +38,11 @@
     "koa-json": "^2.0.2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
+    "koa-webpack": "^5.2.4",
     "koa-webpack-dev-middleware": "^2.0.2",
     "koa-webpack-middleware": "^1.0.7",
     "polyfill": "^0.1.0",
-    "webpack": "^4.19.1",
+    "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.1.10"
   },

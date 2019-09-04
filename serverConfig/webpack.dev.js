@@ -10,8 +10,6 @@ var Entrys = {},
     htmls = []
 files.forEach(function (file) {
     var releativePath = path.relative(basePath, file)
-    console.log('file>>>',file)
-    console.log('__dirname',__dirname)
     var name = releativePath.replace(/\.js/, '').toLowerCase()
     Entrys[name] = [file]
     htmls.push(new HtmlWebpackPlugin({
@@ -31,7 +29,7 @@ module.exports = {
         // 这不就是按需加载的么
         chunkFilename: '[name].[chunkhash].js',
         crossOriginLoading: 'anonymous',
-        // publicPath: '/build/'
+        publicPath: ''
     },
     devtool: 'inline-source-map',
     /**

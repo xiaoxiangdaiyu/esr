@@ -57,8 +57,11 @@ plugins: [
 ```js
 WebSocket connection to 'ws://localhost:52072/' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
 ```
+这里原因找到了，开始时为了方便，使用了nodemon 来启动，每次更新导致都会进行启动
+websocket服务端口会发生变更
+而客户端保留的依然是原始端口，所以报错。
 
-### 引入webpack-dev-middle之后，其实html没有被打包出来，因为原本存在inde.html的原因，所以可以正确访问
+### 引入webpack-dev-middle之后，其实html没有被打包出来，因为原本存在index.html的原因，所以可以正确访问
 
 当删除之后使用
 ```js
@@ -108,3 +111,38 @@ npm run serve-dev
 
 ## 问题记录
 koa-views 使用ejs渲染模板时，发现devmodule 生成于内存中的文件不能被访问到，头疼。
+
+这里的问题在于 设置
+
+```js
+devMiddleware:{
+            // 此时访问路径为 /ssr/server/static/index.html 
+           publicPath: devConfig.output.path
+            publicPath: '/'
+        },
+```
+
+直接访问 http://127.0.0.1:3000/index.html  显然读不到文件。
+
+
+对于koa-webpack中提到的：
+```js
+Using with html-webpack-plugin
+When using with html-webpack-plugin, you can access dev-middleware in-memory filesystem to serve index.html file:
+
+const middleware = await koaWebpack({ config });
+ 
+app.use(middleware);
+ 
+app.use(async (ctx) => {
+  const filename = path.resolve(webpackConfig.output.path, 'index.html')
+  ctx.response.type = 'html'
+  ctx.response.body = middleware.devMiddleware.fileSystem.createReadStream(filename)
+});
+
+```
+实际验证是多余的，publicPath 设置成功后，koa中间件可以读到相关文件
+
+
+
+## 

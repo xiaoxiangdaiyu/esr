@@ -5,7 +5,7 @@ export default class extends Component {
         super(props)
     }
     render(){
-        let list = [2222,12,223,222]
+        let list = ['测试',12,223,222]
         return (
             <div>
                 {list.map((item,i)=>{

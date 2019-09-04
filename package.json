@@ -5,10 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "clean-webpack-plugin": "^0.1.19",
+    "detect-port": "^1.3.0",
     "file-loader": "^4.2.0",
     "fs": "0.0.1-security",
     "html-loader": "^0.5.5",
     "koa-views": "^6.2.0",
+    "opn": "^6.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -50,7 +52,7 @@
     "dev": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
     "build2": "webpack --config ./serverConfig/webpack.dev.js",
-    "serve-dev": "nodemon ./ssr/bin/dev.js"
+    "serve-dev": "node ./ssr/bin/dev.js"
   },
   "repository": {
     "type": "git",
